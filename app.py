@@ -108,32 +108,32 @@ class CalculatorApp(toga.App):
     
     def create_menu_content(self):
         self.main_menu = toga.ScrollContainer(horizontal=False, style=Pack(flex=1))
-        self.menu_content = toga.Box(style=Pack(direction=COLUMN, padding=10, background_color="#8DFFE2"))
+        self.menu_content = toga.Box(style=Pack(direction=COLUMN, padding=10, background_color="#EEFDDA"))
 
         label = toga.Label(
             "Welcome To MyMathshelper!!",
-            style=Pack(font_size=14, padding=10, font_family="Comic Sans MS", font_weight="bold", background_color="#8DFFE2", text_align="center"),
+            style=Pack(font_size=14, padding=10, font_family="Comic Sans MS", font_weight="bold", background_color="#EFFFDA", text_align="center"),
         )
         self.menu_content.add(label)
 
         tile_grid = toga.Box(style=Pack(direction=COLUMN, padding=5))
 
         tile_data = [
-            ("🧮", "Calculator", self.show_basic),
-            ("🔬", "Scientific+Math", self.show_advanced),
-            ("🧠", "Abacus Practice", self.show_abacus),
-            ("➕", "Abacus II", self.show_abacus_ii),
-            ("📘", "Abacus Learn", self.show_abacus_learning),
-            ("√", "√x", self.show_square_root),
-            ("🧩", "√x Practice", self.show_square_root_practice),
-            ("²", "x²", self.show_square),
-            ("🎯", "x² Practice", self.show_square_practice),
-            ("³", "x³", self.show_cube),
-            ("🧪", "x³ Practice", self.show_cube_practice),
-            ("🧿", "³√x", self.show_cube_root),
-            ("📐", "³√x Practice", self.show_cube_root_practice),
-            ("🔢", "Decimal Study", self.show_decimal_study),
-            ("🎥", "App Tutorial", self.open_tutorial)
+            ("  ➕", "Calculator", self.show_basic),
+            ("  🔬", "Scientific Calculator", self.show_advanced),
+            ("  🧠", "Abacus Practice", self.show_abacus),
+            ("  🧮", "Abacus II", self.show_abacus_ii),
+            ("  📘", "Abacus Learn", self.show_abacus_learning),
+            ("  √", "√x", self.show_square_root),
+            ("  🧩", "√x Practice", self.show_square_root_practice),
+            ("  ✖²", "x²", self.show_square),
+            ("  🎯", "x² Practice", self.show_square_practice),
+            ("  ✖³", "x³", self.show_cube),
+            ("  🧪", "x³ Practice", self.show_cube_practice),
+            ("  ³√", "³√x", self.show_cube_root),
+            ("  📐", "³√x Practice", self.show_cube_root_practice),
+            ("  🔢", "Decimal Study", self.show_decimal_study),
+            ("  🎥", "App Tutorial", self.open_tutorial)
         ]
 
         row_box = None
@@ -143,11 +143,11 @@ class CalculatorApp(toga.App):
                 tile_grid.add(row_box)
 
             emoji_label = toga.Label(emoji, style=Pack(font_size=36, padding=5))
-            button_box = toga.Box(style=Pack(direction=COLUMN, width=120, height=100, padding=5, alignment="center"))
+            button_box = toga.Box(style=Pack(direction=COLUMN, width=140, height=120, padding=10, alignment="right"))
             btn = toga.Button(
                 title,
                 on_press=action,
-                style=Pack(width=100, height=50, font_size=10, background_color="#5CFD84", text_align="center")
+                style=Pack(width=120, height=60, font_size=12, background_color="#EFFFDA", text_align="center", alignment="center")
             )
             button_box.add(emoji_label)
             button_box.add(btn)
@@ -164,14 +164,14 @@ class CalculatorApp(toga.App):
         self.main_menu.content = self.menu_content
 
     def create_basic_operations(self):
-        self.basic_ops_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1, background_color="#5CFD84"))
+        self.basic_ops_box = toga.Box(style=Pack(direction=COLUMN, padding=5, flex=1, background_color="#5CFD84",alignment="center"))
         label = toga.Label("Calculator", style=Pack(font_size=20, font_family="Segoe Print", padding=10))
         self.basic_display = toga.TextInput(readonly=True, style=Pack(padding=10, font_size=18))
         self.basic_ops_box.add(label)
         self.basic_ops_box.add(self.basic_display)
 
         for row_vals in [["7", "8", "9", "/"], ["4", "5", "6", "*"], ["1", "2", "3", "-"], ["0", ".", "C", "+"], ["="]]:
-            row = toga.Box(style=Pack(direction=ROW, padding=5, background_color="MediumSeaGreen"))
+            row = toga.Box(style=Pack(direction=ROW, padding=5, flex=1, background_color="MediumSeaGreen"))
             for val in row_vals:
                 btn = toga.Button(val, on_press=self.basic_button_press, style=Pack(flex=1, padding=5))
                 row.add(btn)
@@ -195,7 +195,7 @@ class CalculatorApp(toga.App):
             self.basic_display.value = current + label
 
     def create_advanced_operations(self):
-        self.advanced_ops_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1, background_color="#5CFD84"))
+        self.advanced_ops_box = toga.Box(style=Pack(direction=COLUMN, padding=5, flex=1, background_color="#5CFD84",alignment="center"))
         label = toga.Label("Scientific Math", style=Pack(font_size=20, font_family="Segoe Print", padding=10))
         self.adv_display = toga.TextInput(readonly=True, style=Pack(padding=10, font_size=18))
         self.advanced_ops_box.add(label)
@@ -207,7 +207,7 @@ class CalculatorApp(toga.App):
             ["pi", "e", "^", "C"],
         ]
         for row_vals in adv_funcs:
-            row = toga.Box(style=Pack(direction=ROW, padding=5))
+            row = toga.Box(style=Pack(direction=ROW, padding=5, flex=1))
             for val in row_vals:
                 btn = toga.Button(val, on_press=self.advanced_button_press, style=Pack(flex=1, padding=5, background_color="MediumSeaGreen"))
                 row.add(btn)
@@ -220,7 +220,7 @@ class CalculatorApp(toga.App):
             ["0", ".", "=", "+"],
         ]
         for row_vals in numpad:
-            row = toga.Box(style=Pack(direction=ROW, padding=5))
+            row = toga.Box(style=Pack(direction=ROW, padding=5, flex=1))
             for val in row_vals:
                 btn = toga.Button(val, on_press=self.advanced_button_press, style=Pack(flex=1, padding=5, background_color="MediumSeaGreen"))
                 row.add(btn)
@@ -444,7 +444,7 @@ class CalculatorApp(toga.App):
         self.sqrt_prac_box.add(self.sqrt_prac_digits)
 
         btn_start = toga.Button("Start Practice", on_press=self.sqrt_practice_start, style=Pack(padding=10, background_color="MediumSeaGreen"))
-        back_btn = toga.Button("Back", on_press=self.show_menu, style=Pack(padding=10))
+        back_btn = toga.Button("Back", on_press=self.show_menu, style=Pack(padding=10,background_color="MediumSeaGreen"))
         self.sqrt_prac_box.add(btn_start)
         self.sqrt_prac_box.add(back_btn)
 
@@ -569,7 +569,7 @@ class CalculatorApp(toga.App):
             msg = "Please enter a valid number."
         self.show_result_slide(msg, self.show_square)
     def create_square_practice(self):
-        self.square_prac_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1, background_color="olive"))
+        self.square_prac_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1, background_color="#5CFD84"))
         label = toga.Label("Square Practice", style=Pack(font_size=20, font_family="Segoe Print", padding=10))
         self.square_prac_box.add(label)
 
@@ -904,9 +904,9 @@ class CalculatorApp(toga.App):
             msg = f"Cube of {num} = {result}"
         except Exception:
             msg = "Invalid input. Please enter a valid number."
-        self.show_result_slide(msg, self.show_cube)
+        self.show_result_slide(msg, self.show_cube) 
     def create_cube_practice(self):
-        self.cube_prac_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1))
+        self.cube_prac_box = toga.Box(style=Pack(direction=COLUMN, padding=10, flex=1, background_color="#5CFD84"))
         label = toga.Label("Cube Practice", style=Pack(font_size=20, font_family="Segoe Print", padding=10))
         self.cube_prac_box.add(label)
 
